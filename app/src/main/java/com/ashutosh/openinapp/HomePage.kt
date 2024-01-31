@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import android.os.Build
 import androidx.annotation.RequiresApi
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Badge
 import androidx.compose.material3.BadgedBox
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -18,12 +19,14 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextMotion
+import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -111,17 +114,19 @@ fun BottomNavigationBar(navController: NavHostController , activity: Activity) {
                     || (currentDestination?.route == "profile"))
 
             if (bottomDestination) {
-                NavigationBar(containerColor = Color(0xFF222222)) {
+                NavigationBar(containerColor = Color.White) {
+
                     items.forEachIndexed { index, item ->
 
                         NavigationBarItem(
 
+
                             colors = NavigationBarItemDefaults.colors(
-                                selectedIconColor = Color.White,
-                                selectedTextColor = Color.White,
-                                indicatorColor = Color(0xFF4A4458) ,
-                                unselectedIconColor = Color.White,
-                                unselectedTextColor = Color.White
+                                selectedIconColor = Color.Black,
+                                selectedTextColor = Color.Black,
+                                indicatorColor = Color.Transparent ,
+                                unselectedIconColor = Color.Black,
+                                unselectedTextColor = Color.Black
                             ),
 
                             selected = selectedItemIndex == index,
@@ -141,10 +146,7 @@ fun BottomNavigationBar(navController: NavHostController , activity: Activity) {
                                 Text(
                                     text = item.title,
                                     style = TextStyle(
-                                        textMotion = TextMotion.Animated,
-                                        fontFamily = FontFamily.Default,
-                                        fontWeight = FontWeight.W500,
-                                        color = Color.White
+                                        color = Color.Black
                                     ) ,
                                 )
                             },
