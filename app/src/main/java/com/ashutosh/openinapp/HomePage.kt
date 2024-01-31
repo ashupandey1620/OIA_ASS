@@ -58,29 +58,39 @@ fun HomePage(activity: Activity , navController: NavHostController = rememberNav
 @Composable
 fun BottomNavigationBar(navController: NavHostController , activity: Activity) {
 
-
-
-
-
     val items = listOf(
         BottomNavigationItem(
-            route = "home",
-            title = "Home",
+            route = "link",
+            title = "Links",
             selectedIcon = R.drawable.mail,
             hasNews = false,
         ),
         BottomNavigationItem(
-            route = "event",
-            title = "Events",
+            route = "course",
+            title = "Courses",
+            selectedIcon = R.drawable.magazine,
+            hasNews = false,
+        ),
+
+
+        BottomNavigationItem(
+            route = "add",
+            title = "Add",
             selectedIcon = R.drawable.mail,
             hasNews = false,
         ),
 
+        BottomNavigationItem(
+            route = "campaign",
+            title = "Campaign",
+            selectedIcon = R.drawable.media,
+            hasNews = false,
+        ),
 
         BottomNavigationItem(
             route = "profile",
             title = "Profile",
-            selectedIcon = R.drawable.mail,
+            selectedIcon = R.drawable.profile,
             hasNews = false,
         ),
     )
@@ -94,8 +104,10 @@ fun BottomNavigationBar(navController: NavHostController , activity: Activity) {
             val navBackStackEntry by navController.currentBackStackEntryAsState()
             val currentDestination = navBackStackEntry?.destination
 
-            val bottomDestination = ((currentDestination?.route == "home")
-                    || (currentDestination?.route == "event")
+            val bottomDestination = ((currentDestination?.route == "link")
+                    || (currentDestination?.route == "course")
+                    || (currentDestination?.route == "add")
+                    || (currentDestination?.route == "campaign")
                     || (currentDestination?.route == "profile"))
 
             if (bottomDestination) {
@@ -175,23 +187,21 @@ fun MainPageNavigation(navController: NavHostController , activity: Activity) {
     NavHost(
         navController = navController,
         route = "HomeGraph",
-        startDestination = "home"
+        startDestination = "link"
     ) {
 
-        composable(route = "home") {
+        composable(route = "link") {
             LinkScreen(navController, activity)
         }
-        composable(route = "event") {
+        composable(route = "course") {
             CourseScreen(navController)
         }
-        composable(route = "profile") {
+        composable(route = "add") {
             AddScreen(navController)
         }
-
-        composable(route = "profile") {
+        composable(route = "campaign") {
             CampaignScreen(navController)
         }
-
         composable(route = "profile") {
             ProfileScreen(navController)
         }
