@@ -132,14 +132,11 @@ fun LinkScreen(navController: NavHostController , activity: Activity) {
 
             ModelDataList()
 
-
             ViewAnalytics()
 
             LinkSection()
 
-
             ViewAllLinks()
-
 
             TalkWithUs()
 
