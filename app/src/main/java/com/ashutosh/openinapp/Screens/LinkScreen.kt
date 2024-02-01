@@ -137,7 +137,85 @@ fun LinkScreen(navController: NavHostController , activity: Activity) {
 
             LinkSection()
 
+
+            ViewAllLinks()
+
+
+            TalkWithUs()
+
+            FAQ()
+
+            Spacer(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(100.dp)
+            )
+
+
         }
+    }
+}
+
+@Composable
+fun FAQ() {
+    Card(
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(120.dp)
+            .padding(horizontal = 20.dp)
+            .padding(vertical = 3.dp)
+            .clip(RoundedCornerShape(10.dp))
+            .background(
+                Color.Green
+            ) ,
+        colors = CardDefaults.cardColors(Color.Blue),
+        border = BorderStroke(1.dp,Color.Blue)
+    ) {
+
+
+
+    }
+}
+
+@Composable
+fun TalkWithUs() {
+    Card(
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(120.dp)
+            .padding(horizontal = 20.dp)
+            .padding(vertical = 3.dp)
+            .clip(RoundedCornerShape(10.dp))
+            .background(
+                Color.Green
+            ) ,
+        colors = CardDefaults.cardColors(Color.Green),
+        border = BorderStroke(1.dp,Color.Green)
+    ) {
+
+
+
+    }
+}
+
+@Composable
+fun ViewAllLinks() {
+    Card(
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(90.dp)
+            .padding(horizontal = 20.dp)
+            .padding(vertical = 3.dp)
+            .clip(RoundedCornerShape(10.dp))
+            .background(
+                Color.Green
+            ) ,
+        colors = CardDefaults.cardColors(Color.White),
+        border = BorderStroke(1.dp,Color.Gray)
+    ) {
+
+
+
     }
 }
 
@@ -147,7 +225,8 @@ fun LinkSection() {
         modifier = Modifier
             .fillMaxWidth()
             .height(600.dp)
-            .padding(20.dp)
+            .padding(horizontal = 20.dp)
+            .padding(vertical = 3.dp)
             .background(
                 Color.Cyan
             ) ,
@@ -165,8 +244,9 @@ fun ViewAnalytics() {
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .height(110.dp)
-            .padding(20.dp)
+            .height(90.dp)
+            .padding(horizontal = 20.dp)
+            .padding(vertical = 3.dp)
             .clip(RoundedCornerShape(10.dp))
             .background(
                 Color.Green
@@ -187,7 +267,8 @@ fun ModelDataList() {
         modifier = Modifier
             .fillMaxWidth()
             .height(150.dp)
-            .padding(20.dp)
+            .padding(horizontal = 20.dp)
+            .padding(vertical = 3.dp)
             .background(
                 Color.Blue
             ) ,
@@ -208,7 +289,8 @@ fun GraphSection() {
         modifier = Modifier
             .fillMaxWidth()
             .height(250.dp)
-            .padding(20.dp)
+            .padding(horizontal = 20.dp)
+            .padding(vertical = 3.dp)
             .clip(RoundedCornerShape(topEnd = 30.dp , topStart = 30.dp))
             .background(
                 Color.Yellow
