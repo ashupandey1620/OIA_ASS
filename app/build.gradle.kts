@@ -11,7 +11,7 @@ android {
 
     defaultConfig {
         applicationId = "com.ashutosh.openinapp"
-        minSdk = 24
+        minSdk = 26
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -143,17 +143,9 @@ dependencies {
     //Github Fancy Toast
     implementation ("io.github.shashank02051997:FancyToast:2.0.2")
 
-    val vicoversion  = "1.13.1"
-    // For Jetpack Compose.
-    implementation("com.patrykandpatrick.vico:compose:$vicoversion")
 
-    // For `compose`. Creates a `ChartStyle` based on an M2 Material Theme.
-    implementation("com.patrykandpatrick.vico:compose-m2:$vicoversion")
+    implementation ("co.yml:ycharts:2.1.0")
 
-    // For `compose`. Creates a `ChartStyle` based on an M3 Material Theme.
-    implementation("com.patrykandpatrick.vico:compose-m3:$vicoversion")
 
-    // Houses the core logic for charts and other elements. Included in all other modules.
-    implementation("com.patrykandpatrick.vico:core:$vicoversion")
 
 }
