@@ -21,8 +21,11 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.Divider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Tab
 import androidx.compose.material3.TabRow
@@ -238,7 +241,7 @@ fun FAQ() {
                 color = Black ,
                 textAlign = TextAlign.Start ,
                 fontSize = 18.sp ,
-                fontWeight = FontWeight.Bold
+                fontWeight = FontWeight.Medium
             )
 
         }
@@ -279,7 +282,7 @@ fun TalkWithUs() {
                 color = Black ,
                 textAlign = TextAlign.Start ,
                 fontSize = 18.sp ,
-                fontWeight = FontWeight.Bold
+                fontWeight = FontWeight.Medium
             )
 
         }
@@ -320,7 +323,7 @@ fun ViewAllLinks() {
                 color = Black ,
                 textAlign = TextAlign.Start ,
                 fontSize = 18.sp ,
-                fontWeight = FontWeight.Bold
+                fontWeight = FontWeight.Medium
             )
 
         }
@@ -336,63 +339,86 @@ fun LinkSection() {
         mutableStateOf(0)
     }
 
-
-    Column(
-        modifier = Modifier
-            .fillMaxWidth()
-            .wrapContentWidth()
-            .padding(horizontal = 20.dp)
-            .padding(vertical = 3.dp)
-            ,
-        verticalArrangement = Arrangement.Top ,
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
+    Row (modifier = Modifier
+        .fillMaxWidth()
+        ,
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.SpaceBetween) {
 
 
-        TabRow(selectedTabIndex = selectedIndex,
-            modifier = Modifier.fillMaxWidth(),
-            contentColor = Blue) {
+        Column(
+            modifier = Modifier
+                .width(300.dp)
+                .padding(horizontal = 20.dp)
+                .padding(vertical = 3.dp) ,
+            verticalArrangement = Arrangement.Top ,
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
 
-            tabs.forEachIndexed { index, tabData ->
+
+            TabRow(selectedTabIndex = selectedIndex ,
+                modifier = Modifier.fillMaxWidth() ,
+                contentColor = Blue ,
+                indicator = {} ,
+                divider = {}
+            ) {
+
+                tabs.forEachIndexed { index , tabData ->
 
 
-                if(index==selectedIndex) {
-                    Tab(
-                        selected = index == selectedIndex ,
-                        onClick = { selectedIndex = index } ,
-                        text = {
-                            Text(
-                                text = tabData.title ,
-                                style = TextStyle(fontSize = 18.sp)
-                            )
-                        } ,
-                        modifier = Modifier.fillMaxSize().clip(RoundedCornerShape(20.dp))
-                            .background(Color(0xFF0e6fff)) ,
-                        selectedContentColor = White ,
-                        unselectedContentColor = Gray
+                    if (index == selectedIndex) {
+                        Tab(
+                            selected = index == selectedIndex ,
+                            onClick = { selectedIndex = index } ,
+                            text = {
+                                Text(
+                                    text = tabData.title ,
+                                    style = TextStyle(fontSize = 14.sp)
+                                )
+                            } ,
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .clip(RoundedCornerShape(25.dp))
+                                .background(Color(0xFF0e6fff)) ,
+                            selectedContentColor = White ,
+                            unselectedContentColor = Gray
 
-                    )
-                }
-                else{
-                    Tab(
-                        selected = index == selectedIndex ,
-                        onClick = { selectedIndex = index } ,
-                        text = {
-                            Text(
-                                text = tabData.title ,
-                                style = TextStyle(fontSize = 16.sp)
-                            )
-                        } ,
-                        selectedContentColor =  White ,
-                        unselectedContentColor = Gray
+                        )
+                    } else {
+                        Tab(
+                            selected = index == selectedIndex ,
+                            onClick = { selectedIndex = index } ,
+                            text = {
+                                Text(
+                                    text = tabData.title ,
+                                    style = TextStyle(fontSize = 14.sp)
+                                )
+                            } ,
+                            selectedContentColor = White ,
+                            unselectedContentColor = Gray
 
-                    )
+                        )
+                    }
                 }
             }
+
+
         }
 
+        Column(
+            modifier = Modifier
+                .width(50.dp)
+                .height(50.dp)
+                .clip(RoundedCornerShape(20.dp))
+                .background(Color.White) ,
+            verticalArrangement = Arrangement.Center ,
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
 
+            Icon(imageVector = Icons.Filled.Search
+                , contentDescription = "ok")
 
+        }
     }
 }
 
