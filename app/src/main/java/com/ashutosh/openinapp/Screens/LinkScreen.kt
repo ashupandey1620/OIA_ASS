@@ -62,6 +62,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavHostController
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import co.yml.charts.axis.AxisData
 import co.yml.charts.common.model.PlotType
 import co.yml.charts.common.model.Point
@@ -78,6 +79,7 @@ import co.yml.charts.ui.linechart.model.SelectionHighlightPopUp
 import co.yml.charts.ui.linechart.model.ShadowUnderLine
 import com.ashutosh.openinapp.Data.tabs
 import com.ashutosh.openinapp.R
+import com.ashutosh.openinapp.ViewModel.GetLinkDataPageVM
 import java.time.Month
 
 
@@ -85,6 +87,14 @@ import java.time.Month
 
 @Composable
 fun LinkScreen(navController: NavHostController , activity: Activity) {
+
+    val linkScreenVM : GetLinkDataPageVM = hiltViewModel()
+
+
+    LaunchedEffect(Unit){
+        linkScreenVM.getLinkData()
+    }
+
 
 
     Column(
