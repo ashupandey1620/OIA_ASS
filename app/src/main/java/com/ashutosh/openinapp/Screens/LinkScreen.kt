@@ -747,8 +747,8 @@ fun GreetingSection() {
             fontWeight = FontWeight.ExtraBold
         )
 
-        Icon(painter = painterResource(id = R.drawable.mail) , contentDescription = "ok",
-            tint = Color.Black)
+        Icon(painter = painterResource(id = R.drawable.hey) , contentDescription = "ok",
+            )
 
 
     }
