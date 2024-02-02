@@ -380,7 +380,7 @@ fun LinkSection() {
                         text = {
                             Text(
                                 text = tabData.title ,
-                                style = TextStyle(fontSize = 18.sp)
+                                style = TextStyle(fontSize = 16.sp)
                             )
                         } ,
                         selectedContentColor =  White ,
