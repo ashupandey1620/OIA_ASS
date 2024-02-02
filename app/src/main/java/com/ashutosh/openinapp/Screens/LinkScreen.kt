@@ -3,10 +3,12 @@ package com.ashutosh.openinapp.Screens
 import android.app.Activity
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
+import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -22,14 +24,18 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
+import androidx.compose.material3.Tab
+import androidx.compose.material3.TabRow
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -39,11 +45,14 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Color.Companion.Black
 import androidx.compose.ui.graphics.Color.Companion.Blue
+import androidx.compose.ui.graphics.Color.Companion.Gray
 import androidx.compose.ui.graphics.Color.Companion.Green
+import androidx.compose.ui.graphics.Color.Companion.White
 import androidx.compose.ui.graphics.DefaultAlpha
 import androidx.compose.ui.graphics.drawscope.DrawStyle
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -64,6 +73,7 @@ import co.yml.charts.ui.linechart.model.LineType
 import co.yml.charts.ui.linechart.model.SelectionHighlightPoint
 import co.yml.charts.ui.linechart.model.SelectionHighlightPopUp
 import co.yml.charts.ui.linechart.model.ShadowUnderLine
+import com.ashutosh.openinapp.Data.tabs
 import com.ashutosh.openinapp.R
 import java.time.Month
 
@@ -317,21 +327,69 @@ fun ViewAllLinks() {
 
     }
 }
-
+@Preview
 @Composable
 fun LinkSection() {
+
+
+    var selectedIndex by remember {
+        mutableStateOf(0)
+    }
+
+
     Column(
         modifier = Modifier
             .fillMaxWidth()
-            .height(600.dp)
+            .wrapContentWidth()
             .padding(horizontal = 20.dp)
             .padding(vertical = 3.dp)
-            .background(
-                Color.Cyan
-            ) ,
+            ,
         verticalArrangement = Arrangement.Top ,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
+
+
+        TabRow(selectedTabIndex = selectedIndex,
+            modifier = Modifier.fillMaxWidth(),
+            contentColor = Blue) {
+
+            tabs.forEachIndexed { index, tabData ->
+
+
+                if(index==selectedIndex) {
+                    Tab(
+                        selected = index == selectedIndex ,
+                        onClick = { selectedIndex = index } ,
+                        text = {
+                            Text(
+                                text = tabData.title ,
+                                style = TextStyle(fontSize = 18.sp)
+                            )
+                        } ,
+                        modifier = Modifier.fillMaxSize().clip(RoundedCornerShape(20.dp))
+                            .background(Color(0xFF0e6fff)) ,
+                        selectedContentColor = White ,
+                        unselectedContentColor = Gray
+
+                    )
+                }
+                else{
+                    Tab(
+                        selected = index == selectedIndex ,
+                        onClick = { selectedIndex = index } ,
+                        text = {
+                            Text(
+                                text = tabData.title ,
+                                style = TextStyle(fontSize = 18.sp)
+                            )
+                        } ,
+                        selectedContentColor =  White ,
+                        unselectedContentColor = Gray
+
+                    )
+                }
+            }
+        }
 
 
 
@@ -384,18 +442,28 @@ fun ModelDataList() {
     Column(
         modifier = Modifier
             .fillMaxWidth()
-            .height(150.dp)
+            .height(120.dp)
             .padding(horizontal = 20.dp)
             .padding(vertical = 3.dp)
-            .background(
-                Color.Blue
-            ) ,
-        verticalArrangement = Arrangement.Top ,
+            ,
+        verticalArrangement = Arrangement.Center ,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
 
 
-        Row() {
+        var clicks = "293"
+        var topLocation = "Kanpur"
+        var social  = "Instagram"
+        var bestTime = "Best Time"
+
+        Row(modifier = Modifier
+            .fillMaxSize()
+            .horizontalScroll(rememberScrollState())) {
+
+            ModelDataListItem(R.drawable.click, clicks,   "Todays Click")
+            ModelDataListItem(R.drawable.location, topLocation,"Top Location")
+            ModelDataListItem(R.drawable.social, social,  "Top Source")
+            ModelDataListItem(R.drawable.click, bestTime,   "Best Time")
 
         }
 
@@ -405,7 +473,60 @@ fun ModelDataList() {
 }
 
 
-@Preview
+@Composable
+fun ModelDataListItem(icon: Int , data: String , str: String) {
+
+    Column(
+        modifier = Modifier
+            .padding(horizontal = 10.dp)
+            .padding(vertical = 3.dp)
+            .width(100.dp)
+            .fillMaxHeight()
+            .clip(RoundedCornerShape(5.dp))
+
+        ,
+        verticalArrangement = Arrangement.SpaceAround ,
+        horizontalAlignment = Alignment.Start
+    ) {
+
+        Icon(modifier = Modifier
+            .padding(start = 20.dp)
+            .size(30.dp)
+
+            ,painter = painterResource(id = icon) , contentDescription = "ok",
+        )
+
+
+
+            Text(
+                text = data ,
+                modifier = Modifier
+                    .padding(start = 15.dp)
+                    .wrapContentWidth() ,
+                color = Black ,
+                textAlign = TextAlign.Start ,
+                fontSize = 16.sp ,
+                fontWeight = FontWeight.Bold
+            )
+
+            Text(
+                text = str ,
+                modifier = Modifier
+                    .padding(start = 15.dp)
+                    .wrapContentWidth()
+                    ,
+                color = Gray ,
+                textAlign = TextAlign.Start ,
+                fontSize = 12.sp ,
+                fontWeight = FontWeight.Bold
+            )
+
+    }
+
+    }
+
+
+
 @Composable
 fun GraphSection() {
 
